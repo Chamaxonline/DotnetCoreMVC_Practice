@@ -1,4 +1,4 @@
-# DotnetCoreMVC_Practice
+# DotnetCore MVC Application
 - Use the MVC (Model View Controller) design pattern.
 - Configure database tables using the Entity framework.
 - Setup of classes as models. Customize Razor forms.
