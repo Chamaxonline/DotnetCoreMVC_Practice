@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,16 @@ namespace MVCPractice.Controllers
         {
             return View(await _context.Jokes.ToListAsync());
         }
+        // GET: Jokes/ShowSearchForm
+        public async Task<IActionResult> ShowSearchForm()
+        {
+            return View();
+        }
+        // GET: Jokes/ShowSearchResults
+        public async Task<IActionResult> ShowSearchResults(string SearchPharse)
+        {
+            return View("Index",await _context.Jokes.Where(x=> x.JokeQuestion.Contains(SearchPharse)).ToListAsync());
+        }
 
         // GET: Jokes/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -44,6 +55,7 @@ namespace MVCPractice.Controllers
         }
 
         // GET: Jokes/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
